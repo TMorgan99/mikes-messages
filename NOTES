@@ -1,0 +1,4 @@
+NOTES
+
+# remove tests, we are using rspec.
+rails new -T
