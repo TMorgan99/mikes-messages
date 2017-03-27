@@ -2,3 +2,38 @@ NOTES
 
 # remove tests, we are using rspec.
 rails new -T
+
+# add Gems.
+
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'kaminari'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'faker'
+  gem 'factory_girl_rails'
+
+# Install steps for the gems
+(1 bootstrap.
+./app/assets/stylesheets/application.scss:  <- rename the file
+    @import "bootstrap-sprockets";
+    @import "bootstrap";
+./app/assets/javascripts/application.js:
+    //= require jquery
+    //= require bootstrap-sprockets
+    
+(2 devise.
+rails generate devise:install
+
+(3 kaminari
+rails generate kaminari:config
+
+(4 rspec-rails:
+rails generate rspec:install
+
+(5 capybara:
+(6 faker:
+(7 factory_girl_rails:
+
