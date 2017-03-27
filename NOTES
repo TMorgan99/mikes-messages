@@ -37,3 +37,13 @@ rails generate rspec:install
 (6 faker:
 (7 factory_girl_rails:
 
+
+## Generate 
+rails generate devise User
+    # need to extend the devise model ...
+rails generate migration AddNameToUsers  firstname lastname
+rails generate devise:views
+rails generate scaffold Post user:references post:references title:string body:text
+rake db:migrate
+
+  root to posts#index
