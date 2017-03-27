@@ -47,3 +47,4 @@ rails generate scaffold Post user:references post:references title:string body:t
 rake db:migrate
 
   root to posts#index
+
