@@ -55,6 +55,4 @@ rake db:seed
 # Extend devise to take the first/last name.
 # -- http://jacopretorius.net/2014/03/adding-custom-fields-to-your-devise-user-model-in-rails-4.html
 
-
-# now I can register the first few user by hand, and the rext by seed.
-# then I can play around in development.
+# need to fix up the routing between the posts,

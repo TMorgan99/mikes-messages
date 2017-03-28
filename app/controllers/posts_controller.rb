@@ -79,7 +79,7 @@ class PostsController < ApplicationController
     end
     
     def set_comments
-      @comments = Post.find_comments(params[:id])
+      @comments = Post.find_comments(params[:id]).order( 'created_at DESC' )
     end
     
   
