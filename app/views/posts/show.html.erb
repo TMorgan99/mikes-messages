@@ -1,24 +1,53 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 <p>
-  <strong>User:</strong>
-  <%= @post.user %>
+  <!--<strong>User:</strong>-->
+  <%= @post.user.firstname %>
+  <%= @post.user.lastname %>
+  writes:
 </p>
 
-<p>
-  <strong>Post:</strong>
-  <%= @post.post %>
-</p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>
   <%= @post.title %>
+  </strong>
 </p>
 
 <p>
-  <strong>Body:</strong>
   <%= @post.body %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
+<p>
+  <% if @comments.empty? %>
+    No comments on this post yet.
+    Be the first to comment.
+  <% else %>
+    <%= @comments.size %> Comments follow...
+    Why not add yours?
+  <% end %>
+  
+  <% if user_signed_in? %>
+  <%= link_to 'Add my Comment', new_comment_path( @post.id ), class: 'btn btn-default navbar-btn' %>
+  <% else %>
+  <%= link_to 'Log in to Add my Comment', new_user_session_path, class: 'btn btn-default navbar-btn' %>
+  <% end %>
+</p>
+
+<table>
+<tbody>
+  
+  <% @comments.each do |comment| %>
+
+      <tr>
+        <td>
+          <%= comment.user.firstname %>
+          <%= comment.user.lastname %>
+        </td>
+        <td> &nbsp; comments: &nbsp; </td>
+        <td><%= comment.body %></td>
+      </tr>
+  <% end %> 
+</tbody>  
+</table>

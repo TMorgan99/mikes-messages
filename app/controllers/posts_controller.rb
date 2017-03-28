@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_comments, only: [:show]
 
   # GET /posts
   # GET /posts.json
+  # use the post scope. don't load comments here.
   def index
-    @posts = Post.all
+    @posts = Post.post.all
   end
 
   # GET /posts/1
@@ -15,8 +17,17 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.post_id = nil
   end
 
+  # # # GET /posts/:id/comment
+  def new_comment
+    @style = 'Comment'
+    @post = Post.new
+    @post.post_id = params[:id]   # set the hidden field.
+    # render 'new'
+  end
+  
   # GET /posts/1/edit
   def edit
   end
@@ -66,7 +77,12 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
-
+    
+    def set_comments
+      @comments = Post.find_comments(params[:id])
+    end
+    
+  
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:user_id, :post_id, :title, :body)

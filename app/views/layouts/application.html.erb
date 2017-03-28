@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Mike's Messages</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= tag :meta, name: 'viewport', content: 'width=device-width, initial-scale=1' %>
+
 </head>
 <body>
+  
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class='container'>
+    <div class="navbar-header">
+      
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        Mike's Messages
+      <% end %>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-nav-collapse">
       <div class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          Signed in as <%= current_user.displayname %>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn' %>
         <% else %>
+          You are not signed in.
           <%= link_to 'Log in', new_user_session_path, class: 'btn btn-default navbar-btn' %>
           <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-default navbar-btn' %>
         <% end %>
       </div>
 
-<%= yield %>
+    </div><!-- /.navbar-collapse -->
 
+  </div>
+</nav>
+
+    <!--<div class="container">-->
+    <div class="container flash-container">
+
+      <% flash.each do |type, msg| %>
+        <%= content_tag :div, msg, class: "alert alert-#{type}" %>
+      <% end %>
+
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+    
 </body>
 </html>

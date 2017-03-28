@@ -10,9 +10,20 @@ require 'faker'
 
 # basic scale of seeds
 N = 10
-User.delete_all
-Post.delete_all
+# User.delete_all
+# Post.delete_all
 
+# use: rake db:seed to ADD n records to the database.
+# use: rake db:reset to start from an empty database (id =1)
+
+# create a user we all know.
+admin = User.create!( 
+        firstname: 'Adam' , lastname: 'Admin' , 
+        email: 'admin@example.com', 
+            password: 'topsecret', password_confirmation: 'topsecret' 
+        )
+
+# why can i not log in?
 
 # Users:
 N.times do 
@@ -24,6 +35,11 @@ user = User.create!(
 
 end
 
+# meet the users
+puts "User count: #{User.count}"
+User.all.each do |u|
+    puts "#{u.firstname} #{u.lastname}"
+end
 # Posts: and comments:
 
 # create a random list of existing users
